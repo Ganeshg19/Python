@@ -13,7 +13,7 @@ def fetch_data_from_sp(master_client_id, booking_month, client_id, is_client_lev
     try:
             
         conn = pyodbc.connect(
-            f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD};Timeout=60",
+            f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD};",
             autocommit=True
         )
         conn.timeout = 60
@@ -97,7 +97,6 @@ def fetch_smtp_details(action='SMTP', Str1='',Id=0):
         # Connect to the database
         conn = pyodbc.connect(
             f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
-            f"Timeout=60",  # Increase timeout to 60 seconds
             autocommit=True
         )
         conn.timeout = 60
