@@ -12,11 +12,23 @@ def fetch_data_from_sp(master_client_id, booking_month, client_id, is_client_lev
     """Fetch multiple result sets from the stored procedure GetBookingStatistics."""
     try:
             
-        conn = pyodbc.connect(
-            f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
-            f"Timeout=60",  # Increase timeout to 60 seconds
-            autocommit=True
-        )
+        # conn = pyodbc.connect(
+        #     f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD};Timeout=60",
+        #     autocommit=True
+        # )
+
+conn = pyodbc.connect(
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_USERNAME};"
+    f"PWD={DB_PASSWORD};"
+    f"Timeout=60"
+)
+
+conn.autocommit = True  # ✅ Set autocommit this way
+
+
         cursor = conn.cursor()
 
         # Execute stored procedure
@@ -65,11 +77,24 @@ def get_master_and_client_ids_from_sql():
     WRBHBClientManagement c ON c.Id = p.ClientId;
     """
      # Connect and load data
-    conn = pyodbc.connect(
-            f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
-            f"Timeout=60",  # Increase timeout to 60 seconds
-            autocommit=True
-        )
+    # conn = pyodbc.connect(
+    #         f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
+    #         f"Timeout=60",  # Increase timeout to 60 seconds
+    #         autocommit=True
+    #     )
+
+conn = pyodbc.connect(
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_USERNAME};"
+    f"PWD={DB_PASSWORD};"
+    f"Timeout=60"
+)
+
+conn.autocommit = True  # ✅ Set autocommit this way
+
+
     df = pd.read_sql(query, conn)
     conn.close()
 
@@ -95,11 +120,24 @@ def fetch_smtp_details(action='SMTP', Str1='',Id=0):
     """Fetch SMTP details from the stored procedure GetSmtpDetails."""
     try:
         # Connect to the database
-        conn = pyodbc.connect(
-            f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
-            f"Timeout=60",  # Increase timeout to 60 seconds
-            autocommit=True
-        )
+        # conn = pyodbc.connect(
+        #     f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USERNAME};PWD={DB_PASSWORD}",
+        #     f"Timeout=60",  # Increase timeout to 60 seconds
+        #     autocommit=True
+        # )
+
+conn = pyodbc.connect(
+    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_USERNAME};"
+    f"PWD={DB_PASSWORD};"
+    f"Timeout=60"
+)
+
+conn.autocommit = True  # ✅ Set autocommit this way
+
+
         cursor = conn.cursor()
 
         # Execute the stored procedure
