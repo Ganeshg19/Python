@@ -6,9 +6,11 @@ app = FastAPI(title="Hotel Report Generator API")
 
 # Define your API routes here
 
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run("app.main:app", host="0.0.0.0", port=8000)
+# The code block `if __name__ == "__main__":` is a common Python idiom that allows the code within it
+# to run only if the script is executed directly (not imported as a module in another script).
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
 
 @app.get("/")
 def read_root():
